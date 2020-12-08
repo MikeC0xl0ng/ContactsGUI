@@ -110,14 +110,16 @@ public class SelectFolder extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFileChooser f = new JFileChooser();
-        f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); 
-        f.showSaveDialog(null);
-        String path = f.getSelectedFile().getAbsolutePath();
-        if (!(path.endsWith("\\"))){
-            path += "\\";
-        }
-        jTextField1.setText(path + "rubrica.txt");
+        try{
+            JFileChooser f = new JFileChooser();
+            f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); 
+            f.showSaveDialog(null);
+            String path = f.getSelectedFile().getAbsolutePath();
+            if (!(path.endsWith("\\"))){
+                path += "\\";
+            }
+            jTextField1.setText(path + "rubrica.txt");
+        }catch(Exception ex){}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
