@@ -42,4 +42,8 @@ public class Contatto {
         key = key_;
     }
     
+    public String toStr(){
+        return name + "|" + surname + "|" + tel + "|" + key;
+    }
+    
 }

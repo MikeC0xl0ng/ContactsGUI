@@ -3,12 +3,14 @@ package rubrica;
 public class List {
     
     Element first_elem;
+    public int length;
     
     public List(){
-        
+        length = 0;
     }
     
     public void addElement(Contatto c){
+        length++;
         Element e = new Element(c);
         if (first_elem == null){
             first_elem = e; 
@@ -36,7 +38,21 @@ public class List {
         return e.c;
     }
     
+    public Contatto getElementAt(int pos){
+        if (first_elem == null){
+            return new Contatto();
+        }
+        int i = 0;
+        Element e = first_elem;
+        while ((e != null) && (i!=pos)){
+            e = e.next;
+            i++;
+        }
+        return e.c;
+    }
+    
     public void deleteElement(String key){
+        length--;
         if (first_elem == null){
             return;
         }

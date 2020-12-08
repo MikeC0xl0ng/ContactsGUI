@@ -2,9 +2,9 @@ package rubrica;
 
 public class Element {
     
-    protected Contatto c;
-    protected Element next;
-    protected Element prev;
+    public Contatto c;
+    public Element next;
+    public Element prev;
     
     public Element(){
         
