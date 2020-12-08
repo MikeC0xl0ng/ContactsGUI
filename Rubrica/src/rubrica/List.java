@@ -10,88 +10,87 @@ public class List {
     }
     
     public void addElement(Contatto c){
-        length++;
-        Element e = new Element(c);
-        if (first_elem == null){
-            first_elem = e; 
-            return;
+        if (!(this.contains(c.key))){
+            length++;
+            Element e = new Element(c);
+            if (first_elem == null){
+                first_elem = e; 
+                return;
+            }
+            first_elem.prev = e;
+            e.next = first_elem;
+            first_elem = e;
         }
-        first_elem.prev = e;
-        e.next = first_elem;
-        first_elem = e;
     }
-    
-    public Contatto getElement(String key){
-        if (first_elem == null){
-            return null;
-        }
+        
+    public Element getElement(String key){
         Element e = first_elem;
         while (e != null){
-            if (e.c.key == key){
-                return e.c;
+            if (e.c.key.equals(key)){
+                return e;
             }
             e = e.next;
         }
-        if (e == null){
-            return new Contatto();
-        }
-        return e.c;
-    }
-    
-    public Contatto getElementAt(int pos){
-        if (first_elem == null){
-            return new Contatto();
-        }
-        int i = 0;
-        Element e = first_elem;
-        while ((e != null) && (i!=pos)){
-            e = e.next;
-            i++;
-        }
-        return e.c;
+        return null;
     }
     
     public void deleteElement(String key){
-        length--;
-        if (first_elem == null){
-            return;
-        }
-        Element e = first_elem;
-        if (first_elem.c.key == key){
-            first_elem = first_elem.next;
-            if (first_elem != null){
-                first_elem.prev = null;
-            }
-            return;
-        }
-        while (e.next != null){
-            if (e.next.c.key == key){
-                e.next = e.next.next;
-                if (e.next != null){
-                    e.next.prev = e;
+        if (this.contains(key)){
+            length--;
+            Element e = getElement(key);
+            if (e == first_elem){
+                first_elem = first_elem.next;
+                e = first_elem;
+                if (e != null){
+                    e.prev = null;
                 }
                 return;
             }
-            e = e.next;
+            if (e == null){
+                return;
+            }
+            if (e.prev != null){
+                e.prev.next = e.next;
+            }
+            if (e.next != null){
+                e.next.prev = e.prev;
+            }
         }
+        
     }
     
     public void editElement(String key, Contatto c){
         if (first_elem == null){
+            first_elem = new Element(c);
             return;
         }
+        Element e = this.getElement(key);
+        this.deleteElement(e.c.key);
+        this.addElement(c);
+    }
+    
+    public Element getElementAt(int pos){
         Element e = first_elem;
-        while (e != null){
-            if (e.c.key == key){
-                e.c = c;
-                return;
+        for (int i=0; i<pos; i++){
+            if (e == null){
+                return null;
             }
             e = e.next;
         }
-        if (e == null){
-            return;
-        }
-        e.c = c;
+        return e;
     }
+
+    
+    public boolean contains(String key){
+        Element e = first_elem;
+        while (e != null){
+            if (e.c.key.equals(key)){
+                return true;
+            }
+            e = e.next;
+        }
+        return false;
+    }
+
     
 }

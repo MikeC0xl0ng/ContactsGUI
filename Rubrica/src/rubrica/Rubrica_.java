@@ -18,7 +18,11 @@ public class Rubrica_ {
             contacts[i] = new List();
         }
         contacts_list = new List();
-        path = "rubrica.txt";
+        try{
+            path = new Scanner(new File("path.txt")).nextLine();
+        }catch (Exception ex){
+            path = "rubrica.txt";
+        }
     }
     
     public Rubrica_(int n_){
@@ -28,19 +32,13 @@ public class Rubrica_ {
             contacts[i] = new List();
         }
         contacts_list = new List();
-        path = "rubrica.txt";
-    }    
-    
-    public Rubrica_(int n_, String s){
-        n = n_;
-        contacts = new List[n];
-        for (int i=0; i<n; i++){
-            contacts[i] = new List();
+        try{
+            path = new Scanner(new File("path.txt")).nextLine();
+        }catch (Exception ex){
+            path = "rubrica.txt";
         }
-        contacts_list = new List();
-        path = s;
-    }
-    
+    }    
+
     public void addContact(Contatto c, String key){
         c.key = key;
         contacts[computeHash(key)].addElement(c);
@@ -48,7 +46,7 @@ public class Rubrica_ {
     }
     
     public Contatto getContact(String key){
-        return contacts[computeHash(key)].getElement(key);
+        return contacts[computeHash(key)].getElement(key).c;
     }
     
     public void deleteContact(String key){
@@ -83,7 +81,7 @@ public class Rubrica_ {
         }
         for (int i=0; i<contacts_list.length; i++){
             try{
-                fw.write(contacts_list.getElementAt(i).toStr() + "\r\n");
+                fw.write(contacts_list.getElementAt(i).c.toStr() + "\r\n");
             }catch (Exception ex){
                 
             }
@@ -100,13 +98,11 @@ public class Rubrica_ {
         try{
             s = new Scanner(new File(path));
         }catch (Exception ex){
-            
+            return;
         }
-        String contatto;
         String[] c;
         while(s.hasNextLine()){
-            contatto = s.nextLine();
-            c = split(contatto, '|');
+            c = split(s.nextLine(), '|');
             if (c.length == 4){
                 this.addContact(new Contatto(c[0], c[1], c[2], c[3]), c[3]);
             }
@@ -114,7 +110,7 @@ public class Rubrica_ {
         DefaultListModel<String> m = new DefaultListModel<String>();
         Rubrica.window.jList1.setModel(m);
         for (int i=0; i<this.contacts_list.length; i++){
-            m.addElement(contacts_list.getElementAt(i).key);
+            m.addElement(contacts_list.getElementAt(i).c.key);
         }
     }
     

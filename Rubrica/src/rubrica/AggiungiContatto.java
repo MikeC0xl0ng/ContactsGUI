@@ -31,6 +31,13 @@ public class AggiungiContatto extends javax.swing.JFrame {
         aggiungi = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
+
         jLabel1.setText("Nome");
 
         jLabel2.setText("Cognome");
@@ -84,6 +91,11 @@ public class AggiungiContatto extends javax.swing.JFrame {
 
         jButton2.setForeground(new java.awt.Color(255, 0, 0));
         jButton2.setText("Annulla");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,6 +159,8 @@ public class AggiungiContatto extends javax.swing.JFrame {
         Rubrica.r.addContact(new Contatto(nome.getText(), cognome.getText(), tel.getText(), c.getText()), c.getText());
         Rubrica.r.save();
         Rubrica.r.load();
+        Rubrica.window.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_aggiungiActionPerformed
 
     private void nomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomeKeyPressed
@@ -200,6 +214,15 @@ public class AggiungiContatto extends javax.swing.JFrame {
         }
         n_c = 0;
     }//GEN-LAST:event_cKeyReleased
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Rubrica.window.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        Rubrica.window.setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aggiungi;
