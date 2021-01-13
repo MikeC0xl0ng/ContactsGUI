@@ -119,7 +119,9 @@ public class SelectFolder extends javax.swing.JFrame {
                 path += "\\";
             }
             jTextField1.setText(path + "rubrica.txt");
-        }catch(Exception ex){}
+        } catch (Exception ex){
+            
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

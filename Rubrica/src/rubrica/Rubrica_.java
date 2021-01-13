@@ -79,7 +79,7 @@ public class Rubrica_ {
         }catch (Exception ex){
             
         }
-        for (int i=0; i<contacts_list.length; i++){
+        for (int i=0; i<contacts_list.getLength(); i++){
             try{
                 fw.write(contacts_list.getElementAt(i).c.toStr() + "\r\n");
             }catch (Exception ex){
@@ -102,14 +102,20 @@ public class Rubrica_ {
         }
         String[] c;
         while(s.hasNextLine()){
-            c = split(s.nextLine(), '|');
+            c = s.nextLine().split("\\|");
             if (c.length == 4){
-                this.addContact(new Contatto(c[0], c[1], c[2], c[3]), c[3]);
+                if (c[3].length() > 0){
+                    this.addContact(new Contatto(c[0], c[1], c[2], c[3]), c[3]);
+                }
             }
         }
+        loadJList();
+    }
+    
+    public void loadJList(){
         DefaultListModel<String> m = new DefaultListModel<String>();
         Rubrica.window.jList1.setModel(m);
-        for (int i=0; i<this.contacts_list.length; i++){
+        for (int i=0; i<this.contacts_list.getLength(); i++){
             m.addElement(contacts_list.getElementAt(i).c.key);
         }
     }
@@ -122,28 +128,6 @@ public class Rubrica_ {
             hash = hash % n;
         }
         return hash;
-    }
-    
-    public String[] split(String s, char c){
-        int n = 1;
-        for (int i=0; i<s.length(); i++){
-            if (s.charAt(i) == c){
-                n++;
-            }
-        }
-        String[] splitted = new String[n];
-        for (int i=0; i<splitted.length; i++){
-            splitted[i] = "";
-        }
-        int j = 0;        
-        for (int i=0; i<s.length(); i++){
-            if (!(s.charAt(i) == c)){
-                splitted[j] += s.charAt(i);
-            }else{
-                j++;
-            }
-        }
-        return splitted;
     }
     
 }

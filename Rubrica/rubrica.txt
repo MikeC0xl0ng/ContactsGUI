@@ -1,2 +1,3 @@
-Taddei|Poggi|34567|Taddei profuma male
-Pietro|Ghei|1234|Pietro Puzza Tanto
+Nykola|Bodliev|123|Nyck
+Pietro|Pierantozzi|123|Pietro
+Tommaso|taddei|123|Tommy

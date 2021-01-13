@@ -130,7 +130,7 @@ public class InfoContatto extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Rubrica.r.deleteContact(c_.key);
         Rubrica.r.save();
-        Rubrica.r.load();
+        Rubrica.r.loadJList();
         Rubrica.window.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed

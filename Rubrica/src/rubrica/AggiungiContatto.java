@@ -158,7 +158,7 @@ public class AggiungiContatto extends javax.swing.JFrame {
     private void aggiungiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aggiungiActionPerformed
         Rubrica.r.addContact(new Contatto(nome.getText(), cognome.getText(), tel.getText(), c.getText()), c.getText());
         Rubrica.r.save();
-        Rubrica.r.load();
+        Rubrica.r.loadJList();
         Rubrica.window.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_aggiungiActionPerformed

@@ -87,7 +87,7 @@ public class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        if (evt.getClickCount()==2){
+        if (evt.getClickCount() == 2){
             try{
                 new InfoContatto(jList1.getModel().getElementAt(jList1.locationToIndex(evt.getPoint()))).setVisible(true);
                 this.setVisible(false);
